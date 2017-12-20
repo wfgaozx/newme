@@ -4,6 +4,7 @@ import { MenuController, NavController } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome';
 
 import { TranslateService } from '@ngx-translate/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 
@@ -21,7 +22,8 @@ export class TutorialPage {
   slides: Slide[];
   showSkip = true;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService) {
+  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService,
+    public cd: ChangeDetectorRef) {
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
       "TUTORIAL_SLIDE2_TITLE",
@@ -48,6 +50,8 @@ export class TutorialPage {
             image: 'assets/img/ica-slidebox-img-3.png',
           }
         ];
+        this.cd.detectChanges();
+
       });
   }
 

@@ -1,0 +1,114 @@
+
+<!--
+<link rel="stylesheet" href="assets/css.css">
+  Generated template for the WorklibPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>工作库</ion-title>
+    <ion-buttons *ngIf="disSelect" end>
+        <span >{{strSelect}}</span>
+        <button ion-button  (click)="doSelect()">
+        {{strAction}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <my-slide (slideClick)="onSlideClick($event)" [slides]="pageSlides" [pageNumber]="4"></my-slide>
+  
+</ion-header>
+
+<ion-content>
+  <div *ngIf="disStory"> 
+    <ion-grid >
+      <ion-row>
+        <ion-col>
+          <ion-select [(ngModel)]="curmedia" interface="popover" >
+            <ion-option *ngFor="let media of medias" (ionSelect)="mediaselect($event, media)">{{media.medianame}}</ion-option>
+          </ion-select>
+        </ion-col>
+       <ion-col>
+         <ion-select [(ngModel)]="period" interface="popover" >
+           <ion-option value="今天" (ionSelect)='periodselect()'>今天</ion-option>
+           <ion-option value="三天内" (ionSelect)='periodselect()'>三天内</ion-option>
+           <ion-option value="一周内" (ionSelect)='periodselect()'>一周内</ion-option>
+           <ion-option value="三个月" (ionSelect)='periodselect()'>三个月</ion-option>
+           <ion-option value="五年" (ionSelect)='periodselect()'>五年</ion-option>
+         </ion-select>
+       </ion-col>
+       <ion-col>
+         <ion-select [(ngModel)]="column" interface="popover">
+           <ion-option value="全部">全部</ion-option>
+           <ion-option value="社会">社会</ion-option>
+           <ion-option value="政治">政治</ion-option>
+           <ion-option value="体育">体育</ion-option>
+         </ion-select>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+ </div>
+
+ <div *ngIf="disStory"> 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles" refreshingText="重新加载中" pullingIcon="none"></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+      <ion-item *ngFor="let story of stories; let i = index" >
+        <h2 tappable (click)="storySelected($event, story, i)">{{ story.maintitle }}</h2>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.typename }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.status }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.processtime }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.fetchinfo }}</span>
+        <span><button ion-button end (click)='choicesend(story)'>选送</button></span>
+        <span><button ion-button end (click)='sign(story)'>签发</button></span>
+      </ion-item>
+     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>  
+  
+  <div *ngIf="deptlib"> 
+    <tree-root [(state)]="deptstate" [nodes]="nodes"></tree-root>
+    </div>
+    
+    <div *ngIf="personlib">
+    <tree-root [(state)]="personstate" [nodes]="p_nodes"></tree-root>
+    </div>
+    
+    <div *ngIf="pageLib">
+      <tree-root [(state)]="pageState" [nodes]="pageNodes"></tree-root>
+      </div>
+      
+      <div *ngIf="columnLib">
+        <form (submit)="doSubmit($event)" [formGroup]="formColumn">
+          <ion-list radio-group formControlName="groupColumn">
+            <ion-item *ngFor="let column of columns; let i = index">
+                <ion-label>{{column.name}}</ion-label>
+                <ion-radio value={{column.name}} (ionSelect)="selectColumn($event, column, i)"></ion-radio>
+              </ion-item>
+        </ion-list>
+        </form>
+      </div>
+
+      <div *ngIf="publicLib">
+        <form (submit)="doSubmit($event)" [formGroup]="formPublic">
+          <ion-list radio-group formControlName="groupPublic">
+            <ion-item *ngFor="let media of publics; let i = index">
+                <ion-label>{{media.medianame}}</ion-label>
+                <ion-radio value={{media.medianame}} (ionSelect)="selectPublic($event, media, i)"></ion-radio>
+              </ion-item>
+        </ion-list>
+        </form>
+      </div>
+    
+
+    </ion-content>

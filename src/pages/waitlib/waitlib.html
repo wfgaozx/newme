@@ -1,0 +1,71 @@
+<!--
+  Generated template for the WaitlibPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{libname}}</ion-title>
+  </ion-navbar>
+  <my-slide (slideClick)="onSlideClick($event)" [slides]="pageSlides" [pageNumber]="3"></my-slide>
+ 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-select [(ngModel)]="period" interface="popover" >
+          <ion-option value="今天" (ionSelect)='periodselect()'>今天</ion-option>
+          <ion-option value="三天内" (ionSelect)='periodselect()'>三天内</ion-option>
+          <ion-option value="一周内" (ionSelect)='periodselect()'>一周内</ion-option>
+          <ion-option value="三个月" (ionSelect)='periodselect()'>三个月</ion-option>
+          <ion-option value="五年" (ionSelect)='periodselect()'>五年</ion-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="status" interface="popover">
+          <ion-option value="" (ionSelect)='statusselect()'>全部</ion-option>
+          <ion-option value="true" (ionSelect)='statusselect()'>已用</ion-option>
+          <ion-option value="false" (ionSelect)='statusselect()'>未用</ion-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select *ngIf="xhlib" [(ngModel)]="curgbcatagory" interface="popover">
+          <ion-option *ngFor="let catagory of gbcatagorys" (ionSelect)="gbselect($event, catagory)">{{catagory.name}}</ion-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select *ngIf="xhlib" [(ngModel)]="curloccatagory" interface="popover">
+          <ion-option *ngFor="let catagory of loccatagorys" (ionSelect)="locselect($event, catagory)">{{catagory.name}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="circles" refreshingText="重新加载中" pullingIcon="timenone"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+      <ion-item *ngFor="let story of stories; let i = index" >
+        <h2 tappable (click)="storySelected($event, story, i)">{{ story.maintitle }}</h2>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.typename }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.status }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.processtime }}</span>
+        <span tappable (click)="storySelected($event, story, i)">{{ story.fetchinfo }}</span>
+        <span><button ion-button end (click)='choicesend(story)'>选送</button></span>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  
+  </ion-content>

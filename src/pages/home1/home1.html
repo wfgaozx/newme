@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            多媒体稿
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <rich-text [formControlItem]="item"></rich-text>
+
+    <div padding [innerHTML]="item.value"></div>
+
+{{item.value}}
+
+</ion-content>

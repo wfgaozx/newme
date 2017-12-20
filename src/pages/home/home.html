@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="assets/css.css">
+<!--
+<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+-->
+
+<ion-header>
+
+  <ion-navbar mode='ios'>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="onLogin()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name='mail'></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <ion-slides style="width: 100%; height: 20%" [slidesPerView]=5 [pager]="flase">
+    <ion-slide style="width: 10%" class='button' (click)="doxhlib()">
+      <div tappable class="caidanimg bglightred">
+      <img tappable src="assets/img/xinhua.png" style="width: 60%; margin-top: 10px;" />
+      </div>
+       <div tappable>新华库</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' (click)="doWaitlib()">
+      <div tappable class="caidanimg bgred">
+        <i class="fa fa-hourglass-start "></i>
+      </div>
+      <div tappable>待编库</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' (click)="doWorklib()">
+      <div tappable class="caidanimg bglightgreen">
+        <i class="fa fa-pencil-square"></i>
+      </div>
+      <div tappable>工作库</div>
+    </ion-slide>
+    <ion-slide tappable style="width: 10% " class='button' href="DaibianList.html">
+      <div class="caidanimg bglightred">
+        <i class="fa fa-newspaper-o "></i>
+      </div>
+      <div tappable>成品库</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' href="DaibianList.html">
+      <div tappable class="caidanimg bggreen">
+        <i class="fa fa-random "></i>
+      </div>
+      <div tappable>流向</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' href="DaibianList.html">
+      <div tappable class="caidanimg bgred">
+        <i class="fa fa-paperclip "></i>
+      </div>
+      <div tappable>任务</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' href="DaibianList.html">
+      <div tappable class="caidanimg bglightgreen"><i class="fa fa-list-ol"></i></div>
+      <div tappable>线索</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' href="DaibianList.html">
+      <div tappable class="caidanimg bglightred"><i class="fa fa-indent"></i></div>
+      <div tappable>选题</div>
+    </ion-slide>
+    <ion-slide style="width: 10%" class='button' href="DaibianList.html">
+      <div tappable class="caidanimg bggreen"><i class="fa fa-edit"></i></div>
+      <div tappable>稿件</div>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="list-block margin0 top10 blacka">
+    <ul>
+      <li>
+
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title">
+              <a href="TaskDetail.html" class="list-tilte">任务描述</a>
+              <div class="list-detail">1-26 19:00 已汇报 安排人：无总编</div>
+            </div>
+          </div>
+        </div>
+        <div class=" padding0-75e top-15">
+          <p class=" pad0">
+            <input type="button" value="汇报" class="button button-caozuo" />
+          </p>
+        </div>
+
+      </li>
+      <li>
+        <div class="item-content">
+          <a href="ClueDetail.html" class="item-media">
+                                    <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 2.2rem;'></a>
+          <div class="item-inner">
+            <div class="item-title">
+              <a href="ClueDetail.html" class="list-tilte">线索标题</a>
+              <div class="list-detail">1-26 19:00 潍坊 未选</div>
+            </div>
+          </div>
+        </div>
+        <div class=" padding0-75e top-15">
+          <p class="buttons-row">
+            <input type="button" value="领取" class="button button-caozuo" />
+            <input type="button" value="选题" class="button button-caozuo" />
+            <input type="button" value="推送" class="button button-caozuo" />
+          </p>
+        </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title">
+              <a href="TopicDetail.html" class="list-tilte">选题标题</a>
+              <div class="list-detail">1-26 19:00 待处理 报题人：明记</div>
+            </div>
+          </div>
+        </div>
+        <div class=" padding0-75e top-15">
+          <p class=" pad0">
+            <input type="button" value="确认" class="button button-caozuo" />
+          </p>
+        </div>
+      </li>
+      <li>
+        <div class="item-content">
+          <a href="StoryDetail.html" class="item-media">
+                                    <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 2.2rem;'></a>
+          <div class="item-inner">
+            <div class="item-title">
+              <a href="StoryDetail.html" class="list-tilte">稿件标题</a>
+              <div class="list-detail">1-26 19:00 已采用 投稿人：明记</div>
+            </div>
+          </div>
+        </div>
+        <div class=" padding0-75e top-15">
+          <p class="buttons-row pad0">
+            <input type="button" value="签发" class="button button-caozuo" />
+            <input type="button" value="推送" class="button button-caozuo" />
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</ion-content>

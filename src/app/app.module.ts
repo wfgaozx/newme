@@ -1,8 +1,15 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, Http } from '@angular/http';
+import {File, FileEntry} from "@ionic-native/file";
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
+import { StorageService } from '../providers/storage-service';
+import { FileUploadProvider } from '../providers/file-upload';
+import { TreeModule } from 'angular-tree-component';
+import { MySlide } from '../components/my-slide/my-slide';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+//import {Autosize} from 'angular2-autosize';
 
 import { MyApp } from './app.component';
 
@@ -20,6 +27,21 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
+//import { HomePage } from '../pages/home/home';
+import { HomePage1 } from '../pages/home1/home1';
+import { HgloginPage } from '../pages/hglogin/hglogin';
+//import { Mylib } from '../pages/mylib/mylib';
+import { WorklibPage } from '../pages/worklib/worklib';
+import { WaitlibPage } from '../pages/waitlib/waitlib';
+import { NewstoryPage } from '../pages/newstory/newstory';
+import { NewtopicPage } from '../pages/newtopic/newtopic';
+import { Sendto } from '../pages/sendto/sendto';
+import { StorydetailPage } from '../pages/storydetail/storydetail';
+//import { ProofPage } from '../pages/proof/proof';
+//import { ProofnPage } from '../pages/proofn/proofn';
+import { ChoicesendPage } from '../pages/choicesend/choicesend';
+import { HistoryPage } from '../pages/history/history';
+import { SignPage } from '../pages/sign/sign';
 
 import { Api } from '../providers/api';
 import { Items } from '../mocks/providers/items';
@@ -33,6 +55,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// Import Froala Editor.
+import "froala-editor/js/froala_editor.pkgd.min.js";
+// Import Angular2 plugin.
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import { RichTextComponentModule } from '../components/rich-text/rich-text.module';
+import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
+import { AutoresizeDirective } from '../directives/autoresize/autoresize';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -58,6 +88,7 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
+    MySlide,
     CardsPage,
     ContentPage,
     ItemCreatePage,
@@ -71,11 +102,32 @@ export function provideSettings(storage: Storage) {
     SignupPage,
     TabsPage,
     TutorialPage,
-    WelcomePage
-  ],
+    WelcomePage,
+//    HomePage,
+    HgloginPage,
+//    Mylib,
+    WorklibPage,
+    WaitlibPage,
+    NewstoryPage,
+    Sendto,
+   StorydetailPage,
+ //   ProofPage,
+ //   ProofimagePage,
+    ChoicesendPage,
+    HomePage1,
+    NewtopicPage,
+    HistoryPage,
+    SignPage,
+//    ProofnPage,
+    AutoresizeDirective
+],
   imports: [
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
+    RichTextComponentModule,
     BrowserModule,
     HttpModule,
+    TreeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -89,6 +141,7 @@ export function provideSettings(storage: Storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MySlide,
     CardsPage,
     ContentPage,
     ItemCreatePage,
@@ -102,16 +155,36 @@ export function provideSettings(storage: Storage) {
     SignupPage,
     TabsPage,
     TutorialPage,
-    WelcomePage
+    WelcomePage,
+//    HomePage,
+    HgloginPage,
+//    Mylib,
+    WorklibPage,
+    WaitlibPage,
+    NewstoryPage,
+    Sendto,
+    StorydetailPage,
+ //   ProofPage,
+//    ProofimagePage,
+    ChoicesendPage,
+    NewtopicPage,
+    HistoryPage,
+    SignPage,
+//    ProofnPage,
+    HomePage1
   ],
   providers: [
+    StorageService,
+    FileUploadProvider,
     Api,
+    File,
     Items,
     User,
     Camera,
     GoogleMaps,
     SplashScreen,
     StatusBar,
+    PhotoViewer,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

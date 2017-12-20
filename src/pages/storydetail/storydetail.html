@@ -1,0 +1,75 @@
+<!--
+  Generated template for the StorydetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>稿件详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div (swipe)="swipeEvent($event)">
+  <ion-item>
+    <ion-input type="text"  [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+  <span>作者:</span>
+  <span>{{author}}</span>
+  <span>字数:</span>
+  <span>{{count}}</span>
+  <button ion-button item-end (click)='showHistory()'>历史</button>
+  <button ion-button item-end (click)='showLabel()'>稿签</button>
+  </ion-item>
+      
+ <div *ngIf="lblDisplay">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span>投稿人:</span>
+        <span>{{sender}}</span>
+      </ion-col>
+      <ion-col>
+        <span>题材:</span>
+        <span>{{gener}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span>来源:</span>
+        <span>{{source}}</span>
+      </ion-col>
+      <ion-col>
+        <span>作者:</span>
+        <span>{{author}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span>字数:</span>
+        <span>{{count}}</span>
+      </ion-col>
+      <ion-col>
+        <span>处理时间:</span>
+        <span>{{lastTime}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+ </div>
+
+  <ion-label>正文</ion-label>
+  <ion-textarea #textarea autoresize [(ngModel)]="text"></ion-textarea>
+
+<ion-avatar style="text-align: left; " >
+  <img [src]="profilePicture" style="margin: 5px auto;border-radius: 5% ;max-width: 70%; max-height: 30%" />
+</ion-avatar>
+
+</div>
+
+</ion-content>
