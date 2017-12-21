@@ -128,6 +128,8 @@ private string GetRandom()
       loginname: this.username,
       password: this.password,
       mobiletype: 'MacOS',
+      mobilename: 'iphone',
+      tokennum: '12345',
       loginIP: this.loginip,
       channelId: this.channelid
     };
